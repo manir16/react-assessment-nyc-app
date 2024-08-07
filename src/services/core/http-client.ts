@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Create an Axios instance
+
 const axiosConfig = {
     // baseURL: process.env.REACT_APP_API_URL,
     timeout: 300 * 1000, // Timeout
@@ -11,27 +11,31 @@ const axiosConfig = {
 
   httpClient.interceptors.request.use(
     (config) => {
-      // Add authorization token or any other custom configurations here
-      const token = localStorage.getItem('token');
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
+
+      const apiKey = 'g0UHA26KRG1HkimGVTre8X3ZjdJZyMRs' ||  process.env.REACT_APP_NYT_API_KEY ; 
+
+      if (config.params) {       
+        if (!config.params['api-key']) {
+          config.params['api-key'] = apiKey;
+        }
+      } else {        
+        config.params = { 'api-key': apiKey };
       }
+  
       return config;
     },
     (error) => {
-      // Do something with request error
+    
       return Promise.reject(error);
     }
   );
   
   httpClient.interceptors.response.use(
-    (response) => {
-      // Any status code that lie within the range of 2xx cause this function to trigger
+    (response) => {    
       return response;
     },
     (error) => {
-      // Any status codes that falls outside the range of 2xx cause this function to trigger
-      // Handle errors
+     
       if (error.response) {
         // Server responded with a status other than 200 range
         console.error('Backend returned status', error.response.status);
