@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import {fetchMostPopularArticleData} from './../services/articleService'
-import ArticleList from './ArticleList';
-import { Paper, Typography } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import { fetchMostPopularArticleData } from "./../services/articleService";
+import ArticleList from "./ArticleList";
+import { Paper, Typography } from "@mui/material";
+import ArticleDetail from "./ArticleDetail";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const ArticleContainer: React.FC = () => {
   const [article, setArticle] = useState<any>(null);
@@ -9,19 +11,19 @@ const ArticleContainer: React.FC = () => {
 
   const getArticleData = async () => {
     try {
-      const articleData = await fetchMostPopularArticleData('7');
-      const {results} = articleData
+      const articleData = await fetchMostPopularArticleData("30");
+      const { results } = articleData;
       if (results) {
-          setArticle(results);
-      }     
+        setArticle(results);
+      }
     } catch (error) {
       // Handle error
-      console.error('Failed to fetch Articles', error);
+      console.error("Failed to fetch Articles", error);
     } finally {
       setLoading(false);
     }
   };
-  useEffect(() => { 
+  useEffect(() => {
     getArticleData();
   }, []);
 
@@ -29,16 +31,20 @@ const ArticleContainer: React.FC = () => {
   if (!article) return <p>No Article data</p>;
 
   return (
-    <>  
-    <Paper sx={{padding:'10px'}}>
-        <Typography variant='h2'>
-            Most Popular Articles
-        </Typography>
-    {article.length && <ArticleList articles={article}/>}
-    </Paper>
+    <>
+      <Paper sx={{ padding: "10px" }}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<ArticleList articles={article} />} />
+            <Route
+              path="/article/:id"
+              element={<ArticleDetail articles={article} />}
+            />
+          </Routes>
+        </Router>
+      </Paper>
     </>
-    
   );
 };
 
-export default ArticleContainer
+export default ArticleContainer;
