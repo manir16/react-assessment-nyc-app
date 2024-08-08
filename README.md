@@ -1,6 +1,31 @@
+## About the App 
+
+This is a sample app whichs show the list of Most Popular NY Articles and on click of
+article it will take you to Detail page of the article.
+
+### `Home Page`
+
+![Home Page](image.png)
+
+### `Detail Page`
+
+![Detail Page](image-1.png)
+
+## Technical Stack
+
+ReactJs
+
+TypeScript
+
+JEST
+
+TestingLibrary/react
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
 
 ## Available Scripts
 
