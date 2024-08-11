@@ -26,6 +26,7 @@ const ArticleList: React.FC<ArticleListProps> = ({
       <List>
         {articles.map((item: any) => (
           <React.Fragment key={item.id}>
+     
             <ListItem onClick={() => handleClick(item.id)}>
               <ListItemText
                 primary={item.title}
@@ -42,6 +43,14 @@ const ArticleList: React.FC<ArticleListProps> = ({
                 }
               />
             </ListItem>
+            <Typography
+              sx={{
+                fontSize: "12px",
+              }}
+              variant="h6"
+            >
+              {item.updated}
+            </Typography>
             <Divider />
           </React.Fragment>
         ))}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchMostPopularArticleData } from "./../services/articleService";
 import ArticleList from "./ArticleList";
-import { Paper, Typography } from "@mui/material";
+import { Paper } from "@mui/material";
 import ArticleDetail from "./ArticleDetail";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

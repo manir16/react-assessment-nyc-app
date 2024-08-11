@@ -26,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:coverage": "npm test -- --watchAll=false --coverage"
+    "test:coverage": "npm test -- --watchAll=false --coverage",
+     "sonar": "sonar-scanner"
   },
   "eslintConfig": {
     "extends": [
